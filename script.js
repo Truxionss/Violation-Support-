@@ -1,0 +1,395 @@
+
+// Advanced JavaScript for TikTok Expert Website
+
+// DOM Elements
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const pricingToggle = document.getElementById('pricing-toggle');
+
+// Initialize AOS (Animate On Scroll)
+document.addEventListener('DOMContentLoaded', function() {
+  AOS.init({
+    duration: 1000,
+    once: true,
+    easing: 'ease-out-cubic',
+    anchorPlacement: 'top-bottom',
+    offset: 50
+  });
+});
+
+// Navbar Scroll Effect
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  
+  // Hide navbar when scrolling down, show when scrolling up
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    navbar.style.transform = 'translateY(-100%)';
+  } else {
+    navbar.style.transform = 'translateY(0)';
+  }
+  
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+// Mobile Menu Toggle
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  
+  // Animate hamburger icon
+  const spans = hamburger.querySelectorAll('span');
+  if (hamburger.classList.contains('active')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+  } else {
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  }
+});
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function() {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    
+    // Reset hamburger icon
+    const spans = hamburger.querySelectorAll('span');
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  });
+});
+
+// Active Navigation Link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function updateActiveNavLink() {
+  let current = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    
+    if (window.pageYOffset >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNavLink);
+
+// Pricing Toggle
+if (pricingToggle) {
+  pricingToggle.addEventListener('change', function() {
+    document.body.classList.toggle('yearly-active', this.checked);
+    
+    // Animate price changes
+    const amounts = document.querySelectorAll('.amount');
+    amounts.forEach(amount => {
+      amount.style.transform = 'scale(0.8)';
+      amount.style.opacity = '0.5';
+      
+      setTimeout(() => {
+        amount.style.transform = 'scale(1)';
+        amount.style.opacity = '1';
+      }, 150);
+    });
+  });
+}
+
+// Smooth Scroll for Internal Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    
+    if (target) {
+      const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+      
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Parallax Effect for Hero Section
+const heroBackground = document.querySelector('.hero-background');
+const heroContent = document.querySelector('.hero-content');
+
+window.addEventListener('scroll', function() {
+  const scrolled = window.pageYOffset;
+  const rate = scrolled * -0.5;
+  const rateContent = scrolled * -0.2;
+  
+  if (heroBackground) {
+    heroBackground.style.transform = `translateY(${rate}px)`;
+  }
+  
+  if (heroContent && scrolled < window.innerHeight) {
+    heroContent.style.transform = `translateY(${rateContent}px)`;
+  }
+});
+
+// Typing Animation for Hero Title
+function typeWriter(element, text, speed = 100) {
+  let i = 0;
+  element.innerHTML = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  
+  type();
+}
+
+// Intersection Observer for Animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+      
+      // Special animations for different elements
+      if (entry.target.classList.contains('stat-number')) {
+        animateCounter(entry.target);
+      }
+      
+      if (entry.target.classList.contains('service-card')) {
+        entry.target.style.animationDelay = `${Math.random() * 0.5}s`;
+      }
+    }
+  });
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.stat-number, .service-card, .pricing-card, .testimonial-card').forEach(el => {
+  observer.observe(el);
+});
+
+// Counter Animation
+function animateCounter(element) {
+  const target = parseInt(element.textContent.replace(/[^\d]/g, ''));
+  const duration = 2000;
+  const start = 0;
+  const startTime = performance.now();
+  
+  function updateCounter(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    const currentValue = Math.floor(progress * target);
+    const originalText = element.textContent;
+    
+    if (originalText.includes('%')) {
+      element.textContent = currentValue + '%';
+    } else if (originalText.includes('h')) {
+      element.textContent = currentValue + 'h';
+    } else if (originalText.includes('+')) {
+      element.textContent = currentValue.toLocaleString() + '+';
+    } else {
+      element.textContent = currentValue.toLocaleString();
+    }
+    
+    if (progress < 1) {
+      requestAnimationFrame(updateCounter);
+    }
+  }
+  
+  requestAnimationFrame(updateCounter);
+}
+
+// Form Validation (if forms are added later)
+function validateForm(formElement) {
+  const inputs = formElement.querySelectorAll('input, textarea');
+  let isValid = true;
+  
+  inputs.forEach(input => {
+    const value = input.value.trim();
+    const type = input.type;
+    
+    // Remove previous error states
+    input.classList.remove('error');
+    
+    // Basic validation
+    if (input.hasAttribute('required') && !value) {
+      input.classList.add('error');
+      isValid = false;
+    }
+    
+    // Email validation
+    if (type === 'email' && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        input.classList.add('error');
+        isValid = false;
+      }
+    }
+  });
+  
+  return isValid;
+}
+
+// Loading Animation
+function showLoading(button) {
+  const originalText = button.textContent;
+  button.textContent = 'Loading...';
+  button.disabled = true;
+  
+  setTimeout(() => {
+    button.textContent = originalText;
+    button.disabled = false;
+  }, 2000);
+}
+
+// Add loading animation to CTA buttons
+document.querySelectorAll('.btn-primary, .pricing-btn').forEach(button => {
+  if (button.href && button.href.includes('discord')) {
+    button.addEventListener('click', function(e) {
+      showLoading(this);
+    });
+  }
+});
+
+// Preloader
+window.addEventListener('load', function() {
+  const preloader = document.querySelector('.preloader');
+  if (preloader) {
+    preloader.style.opacity = '0';
+    setTimeout(() => {
+      preloader.remove();
+    }, 500);
+  }
+});
+
+// Performance Optimization: Lazy Loading Images
+if ('IntersectionObserver' in window) {
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+  
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
+  });
+}
+
+// Error Handling
+window.addEventListener('error', function(e) {
+  console.error('JavaScript error:', e.error);
+  // Optionally send to error tracking service
+});
+
+// Unhandled promise rejection handling
+window.addEventListener('unhandledrejection', function(e) {
+  console.error('Unhandled promise rejection:', e.reason);
+  e.preventDefault();
+});
+
+// Service Worker Registration (for PWA capabilities)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    // Only try to register if sw.js exists
+    fetch('/sw.js')
+      .then(response => {
+        if (response.ok) {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        }
+      })
+      .catch(() => {
+        // Service worker file doesn't exist, skip registration
+      });
+  });
+}
+
+// Theme Detection
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+function handleThemeChange(e) {
+  if (e.matches) {
+    document.body.classList.add('dark-theme');
+  } else {
+    document.body.classList.remove('dark-theme');
+  }
+}
+
+prefersDark.addListener(handleThemeChange);
+handleThemeChange(prefersDark);
+
+// Analytics Events (for tracking user interactions)
+function trackEvent(eventName, properties = {}) {
+  // This would integrate with your analytics service
+  if (window.gtag) {
+    window.gtag('event', eventName, properties);
+  } else if (window.analytics) {
+    window.analytics.track(eventName, properties);
+  }
+  // Only log in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Event tracked:', eventName, properties);
+  }
+}
+
+// Track CTA clicks
+document.querySelectorAll('.btn-primary, .pricing-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    trackEvent('cta_click', {
+      button_text: this.textContent.trim(),
+      location: this.closest('section')?.id || 'unknown'
+    });
+  });
+});
+
+// Track section views
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      trackEvent('section_view', {
+        section: entry.target.id
+      });
+    }
+  });
+}, { threshold: 0.5 });
+
+sections.forEach(section => {
+  sectionObserver.observe(section);
+});
