@@ -17,15 +17,23 @@ const gradientCanvas = document.getElementById('gradient-canvas');
 /* ──────────────────────────────────────────────────────────────
    AOS Init
    ────────────────────────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  AOS.init({
-    duration: 800,
-    once: true,
-    easing: 'ease-out-expo',
-    anchorPlacement: 'top-bottom',
-    offset: 60,
-  });
-});
+function initAOS() {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-out-expo',
+      anchorPlacement: 'top-bottom',
+      offset: 60,
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAOS);
+} else {
+  initAOS();
+}
 
 /* ═══════════════════════════════════════════════════════════════
    Gradient Mesh Canvas
@@ -131,20 +139,22 @@ window.addEventListener('scroll', () => {
 /* ═══════════════════════════════════════════════════════════════
    Mobile Menu
    ═══════════════════════════════════════════════════════════════ */
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navMenu.classList.toggle('active');
-  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-});
-
-// Close on link click
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-    document.body.style.overflow = '';
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
   });
-});
+
+  // Close on link click
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+}
 
 /* ═══════════════════════════════════════════════════════════════
    Active Nav Link
@@ -272,27 +282,31 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 /* ═══════════════════════════════════════════════════════════════
    Back to Top
    ═══════════════════════════════════════════════════════════════ */
-window.addEventListener('scroll', () => {
-  backToTop.classList.toggle('visible', window.pageYOffset > 600);
-}, { passive: true });
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.pageYOffset > 600);
+  }, { passive: true });
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 /* ═══════════════════════════════════════════════════════════════
    Parallax Hero
    ═══════════════════════════════════════════════════════════════ */
-const heroBg    = document.querySelector('.hero-background');
-const heroContent = document.querySelector('.hero-content');
+const heroBg       = document.querySelector('.hero-background');
+const heroContent  = document.querySelector('.hero-content');
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.pageYOffset;
-  if (heroBg)    heroBg.style.transform    = `translateY(${scrollY * -0.3}px)`;
-  if (heroContent && scrollY < window.innerHeight) {
-    heroContent.style.transform = `translateY(${scrollY * -0.1}px)`;
-  }
-}, { passive: true });
+if (heroBg || heroContent) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
+    if (heroBg) heroBg.style.transform = `translateY(${scrollY * -0.3}px)`;
+    if (heroContent && scrollY < window.innerHeight) {
+      heroContent.style.transform = `translateY(${scrollY * -0.1}px)`;
+    }
+  }, { passive: true });
+}
 
 /* ═══════════════════════════════════════════════════════════════
    Loading State for CTA Buttons
