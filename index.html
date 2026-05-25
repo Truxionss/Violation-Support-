@@ -1,484 +1,374 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Professional TikTok Shop violation removal and account recovery services. Fix bans, violations, and shop issues in 48 hours with 87% success rate." />
-    <meta name="keywords" content="TikTok recovery, TikTok ban, TikTok shop, violation removal, account recovery" />
-    <title>TikTok Shop Violation Expert - Professional Recovery Services</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  </head>
+/**
+ * TikTok Expert — Premium Interactions
+ * Gradient mesh canvas, particle system, micro-interactions
+ */
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">
-          <i class="fas fa-shield-alt"></i>
-          <span>TikTok Expert</span>
-        </div>
-        <ul class="nav-menu" id="nav-menu">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#plans" class="nav-link">Pricing</a></li>
-          <li><a href="#testimonials" class="nav-link">Reviews</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </nav>
+/* ──────────────────────────────────────────────────────────────
+   DOM References
+   ────────────────────────────────────────────────────────────── */
+const navbar        = document.getElementById('navbar');
+const hamburger     = document.getElementById('hamburger');
+const navMenu       = document.getElementById('nav-menu');
+const pricingToggle = document.getElementById('pricing-toggle');
+const backToTop     = document.getElementById('back-to-top');
+const heroParticles = document.getElementById('hero-particles');
+const gradientCanvas = document.getElementById('gradient-canvas');
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-background">
-        <div class="hero-particles"></div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-badge" data-aos="fade-down">
-          <i class="fas fa-bolt"></i>
-          <span>48-Hour Recovery</span>
-        </div>
-        <h1 data-aos="fade-up" data-aos-delay="200">
-          Fix Your <span class="gradient-text">TikTok Shop</span><br />
-          Violations in 48 Hours
-        </h1>
-        <p data-aos="fade-up" data-aos-delay="400">
-          Professional violation removal, ban recovery, and shop reactivation
-          services. Trusted by 500+ creators, brands, and agencies worldwide.
-        </p>
-        <div class="hero-stats" data-aos="fade-up" data-aos-delay="600">
-          <div class="stat">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Accounts Recovered</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">87%</div>
-            <div class="stat-label">Success Rate</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">48h</div>
-            <div class="stat-label">Average Recovery</div>
-          </div>
-        </div>
-        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
-          <a href="#plans" class="btn-primary">
-            <i class="fas fa-rocket"></i>
-            Fix My Account Now
-          </a>
-          <a href="#services" class="btn-secondary">
-            <i class="fas fa-play"></i>
-            How It Works
-          </a>
-        </div>
-      </div>
-      <div class="scroll-indicator" data-aos="fade-in" data-aos-delay="1000">
-        <div class="scroll-arrow"></div>
-      </div>
-    </section>
+/* ──────────────────────────────────────────────────────────────
+   AOS Init
+   ────────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-out-expo',
+    anchorPlacement: 'top-bottom',
+    offset: 60,
+  });
+});
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2>Our Expert Services</h2>
-          <p>
-            Comprehensive TikTok recovery solutions with proven methodologies
-          </p>
-        </div>
+/* ═══════════════════════════════════════════════════════════════
+   Gradient Mesh Canvas
+   ═══════════════════════════════════════════════════════════════ */
+(function initGradientMesh() {
+  if (!gradientCanvas) return;
+  const ctx = gradientCanvas.getContext('2d');
+  let w, h;
 
-        <div class="services-grid">
-          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-icon">
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h3>Violation Removal</h3>
-            <p>
-              Expert analysis and custom appeals for content, comment, live, and
-              advertising violations with future-proof strategies.
-            </p>
-            <ul class="service-features">
-              <li><i class="fas fa-check"></i> Non-Compliant Account Issues</li>
-              <li><i class="fas fa-check"></i> Unoriginal Content Violations</li>
-              <li><i class="fas fa-check"></i> Live Stream Violations</li>
-              <li><i class="fas fa-check"></i> Ad Policy Violations</li>
-            </ul>
-          </div>
+  const resize = () => {
+    w = gradientCanvas.width  = window.innerWidth;
+    h = gradientCanvas.height = window.innerHeight;
+  };
+  resize();
+  window.addEventListener('resize', resize);
 
-          <div
-            class="service-card featured"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="featured-badge">Most Popular</div>
-            <div class="service-icon">
-              <i class="fas fa-ban"></i>
-            </div>
-            <h3>Account Ban Recovery</h3>
-            <p>
-              Specialized recovery for permanent and temporary bans using
-              proprietary appeal scripts and proven methodologies.
-            </p>
-            <ul class="service-features">
-              <li><i class="fas fa-check"></i> Permanent Ban Recovery</li>
-              <li><i class="fas fa-check"></i> Temporary Ban Appeals</li>
-              <li><i class="fas fa-check"></i> Shadowban Resolution</li>
-              <li><i class="fas fa-check"></i> Visibility Restoration</li>
-            </ul>
-          </div>
+  // Gradient orbs
+  const orbs = [
+    { x: 0.25, y: 0.20, r: 0.35, color: '102, 126, 234',  dx: 0.00008, dy: 0.00006 },
+    { x: 0.70, y: 0.60, r: 0.30, color: '118, 75, 162',   dx: -0.00006, dy: -0.00004 },
+    { x: 0.80, y: 0.25, r: 0.25, color: '0, 242, 254',    dx: 0.00005, dy: -0.00007 },
+    { x: 0.15, y: 0.70, r: 0.28, color: '155, 89, 182',   dx: -0.00007, dy: 0.00005 },
+    { x: 0.50, y: 0.85, r: 0.22, color: '102, 126, 234',  dx: 0.00004, dy: -0.00006 },
+  ];
 
-          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-icon">
-              <i class="fas fa-store"></i>
-            </div>
-            <h3>TikTok Shop Support</h3>
-            <p>
-              Complete shop reactivation services including policy compliance,
-              product listing fixes, and detailed reporting.
-            </p>
-            <ul class="service-features">
-              <li><i class="fas fa-check"></i> Shop Ban Recovery</li>
-              <li><i class="fas fa-check"></i> Policy Compliance</li>
-              <li><i class="fas fa-check"></i> Product Listing Fixes</li>
-              <li><i class="fas fa-check"></i> Full Reactivation</li>
-            </ul>
-          </div>
+  let time = 0;
+  function draw() {
+    time += 1;
+    ctx.clearRect(0, 0, w, h);
 
-          <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-icon">
-              <i class="fas fa-user-shield"></i>
-            </div>
-            <h3>Seller Account Fix</h3>
-            <p>
-              Comprehensive seller account recovery services for all types of
-              violations and verification issues with expert guidance.
-            </p>
-            <ul class="service-features">
-              <li><i class="fas fa-check"></i> Seller Account Violations</li>
-              <li><i class="fas fa-check"></i> Verification Issues</li>
-              <li><i class="fas fa-check"></i> Shop Rejection Issues</li>
-              <li><i class="fas fa-check"></i> Courtesy Rejections</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    for (const orb of orbs) {
+      const ox = orb.x + Math.sin(time * orb.dx) * 0.05;
+      const oy = orb.y + Math.cos(time * orb.dy) * 0.05;
+      const px = ox * w;
+      const py = oy * h;
+      const pr = orb.r * Math.max(w, h);
 
-    <!-- Pricing Plans -->
-    <section id="plans" class="pricing">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2>Recovery Plans</h2>
-          <p>Choose the perfect plan for your TikTok recovery needs</p>
-        </div>
+      const grad = ctx.createRadialGradient(px, py, 0, px, py, pr);
+      grad.addColorStop(0, `rgba(${orb.color}, 0.10)`);
+      grad.addColorStop(0.4, `rgba(${orb.color}, 0.04)`);
+      grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-        <div class="pricing-toggle" data-aos="fade-up" data-aos-delay="200">
-          <span class="toggle-label">Monthly</span>
-          <div class="toggle-switch">
-            <input type="checkbox" id="pricing-toggle" />
-            <label for="pricing-toggle"></label>
-          </div>
-          <span class="toggle-label"
-            >Yearly <span class="discount-badge">-20%</span></span
-          >
-        </div>
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+    }
 
-        <div class="pricing-grid">
-          <div class="pricing-card" data-aos="zoom-in" data-aos-delay="100">
-            <div class="pricing-header">
-              <h3>Basic Guard</h3>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="amount monthly">49</span>
-                <span class="amount yearly">39</span>
-                <span class="period">/month</span>
-              </div>
-              <p>Perfect for individual creators</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 1 Violation per Month</li>
-              <li><i class="fas fa-check"></i> 48-72h Response Time</li>
-              <li><i class="fas fa-check"></i> Custom Appeal Writing</li>
-              <li><i class="fas fa-check"></i> 1-on-1 Guidance</li>
-              <li><i class="fas fa-check"></i> Email Support</li>
-            </ul>
-            <a href="https://discord.gg/npFjpuJ36y" class="pricing-btn"
-              >Get Started</a
-            >
-          </div>
+    requestAnimationFrame(draw);
+  }
 
-          <div
-            class="pricing-card featured"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
-            <div class="popular-badge">Most Popular</div>
-            <div class="pricing-header">
-              <h3>Fortnightly Defense</h3>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="amount monthly">120</span>
-                <span class="amount yearly">96</span>
-                <span class="period">/2 weeks</span>
-              </div>
-              <p>Ideal for active businesses</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 3 Violations per 2 Weeks</li>
-              <li><i class="fas fa-check"></i> 12h Priority Response</li>
-              <li><i class="fas fa-check"></i> Prevention Strategy</li>
-              <li><i class="fas fa-check"></i> Account Monitoring</li>
-              <li><i class="fas fa-check"></i> Priority Support</li>
-            </ul>
-            <a href="https://discord.gg/npFjpuJ36y" class="pricing-btn"
-              >Get Started</a
-            >
-          </div>
+  draw();
+})();
 
-          <div class="pricing-card" data-aos="zoom-in" data-aos-delay="300">
-            <div class="pricing-header">
-              <h3>ProShield Plan</h3>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="amount monthly">200</span>
-                <span class="amount yearly">160</span>
-                <span class="period">/month</span>
-              </div>
-              <p>Enterprise-level protection</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> Up to 5 Violations</li>
-              <li><i class="fas fa-check"></i> Full 1-on-1 Support</li>
-              <li><i class="fas fa-check"></i> Weekly Audit & Coaching</li>
-              <li><i class="fas fa-check"></i> 24/7 Emergency Support</li>
-              <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
-            </ul>
-            <a href="https://discord.gg/npFjpuJ36y" class="pricing-btn"
-              >Get Started</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+/* ═══════════════════════════════════════════════════════════════
+   Hero Particle System
+   ═══════════════════════════════════════════════════════════════ */
+(function initParticles() {
+  if (!heroParticles) return;
+  const count = 35;
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="testimonials">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2>Success Stories</h2>
-          <p>What our clients say about our recovery services</p>
-        </div>
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    const size = Math.random() * 3 + 1;
+    particle.style.width  = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
+    particle.style.animationDelay = (Math.random() * 8) + 's';
+    const colors = ['#667eea', '#764ba2', '#00f2fe', '#f093fb'];
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    heroParticles.appendChild(particle);
+  }
+})();
 
-        <div class="testimonials-grid">
-          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="testimonial-content">
-              <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p>
-                "My TikTok shop was permanently banned, and I thought it was
-                over. This team recovered it in just 36 hours! Incredible
-                service."
-              </p>
-            </div>
-            <div class="testimonial-author">
-              <div class="author-avatar-image">
-                <img
-                  src="https://cdn.discordapp.com/avatars/1268251662611386418/96f74bff19ad494fe271c1d6a86fee20.png?size=1024"
-                  alt="Claire"
-                />
-              </div>
-              <div class="author-info">
-                <h4>Claire 🫳🏼✨</h4>
-                <span>500K+ GMV Creator</span>
-              </div>
-            </div>
-          </div>
+/* ═══════════════════════════════════════════════════════════════
+   Navbar Scroll Effect
+   ═══════════════════════════════════════════════════════════════ */
+let lastScrollTop = 0;
+let scrollTicking = false;
 
-          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="testimonial-content">
-              <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p>
-                "Professional, fast, and effective. They not only recovered my
-                account but also provided strategies to prevent future
-                violations."
-              </p>
-            </div>
-            <div class="testimonial-author">
-              <div class="author-avatar-image">
-                <img
-                  src="https://cdn.discordapp.com/avatars/498657766442008595/4eb4e8deba3b09fd655e23a5446f14f3.png?size=1024"
-                  alt="Creakz"
-                />
-              </div>
-              <div class="author-info">
-                <h4>Creakz</h4>
-                <span>600K+ GMV Creator</span>
-              </div>
-            </div>
-          </div>
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    requestAnimationFrame(() => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="testimonial-content">
-              <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p>
-                "After multiple failed attempts on my own, they successfully
-                appealed my shadowban. My reach is back to normal levels!"
-              </p>
-            </div>
-            <div class="testimonial-author">
-              <div class="author-avatar-image">
-                <img
-                  src="https://cdn.discordapp.com/avatars/796082226718572584/4aa681f5b97e061b3b7759e29105a359.png?size=1024"
-                  alt="Mason"
-                />
-              </div>
-              <div class="author-info">
-                <h4>Mason</h4>
-                <span>Manager & $1M+ GMV Creator</span>
-              </div>
-            </div>
-          </div>
+      // Scrolled class
+      navbar.classList.toggle('scrolled', scrollTop > 60);
 
-          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="testimonial-content">
-              <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p>
-                "My seller account was rejected multiple times for verification
-                issues. They fixed everything and got my shop approved within 48
-                hours. Outstanding service!"
-              </p>
-            </div>
-            <div class="testimonial-author">
-              <div class="author-avatar-image">
-                <img
-                  src="https://cdn.discordapp.com/avatars/748689307081900063/37537712f016fc1fee998d88c27a5d13.png?size=1024"
-                  alt="Kamyn"
-                />
-              </div>
-              <div class="author-info">
-                <h4>Kamyn</h4>
-                <span>Pro-V Women’s Brand Founder</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      // Hide on scroll down, show on scroll up
+      if (scrollTop > lastScrollTop && scrollTop > 150) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="contact-content" data-aos="fade-up">
-          <h2>Ready to Recover Your Account?</h2>
-          <p>
-            Join our Discord community for instant support and expert
-            consultation
-          </p>
-          <div class="contact-buttons">
-            <a
-              href="https://discord.gg/npFjpuJ36y"
-              target="_blank"
-              class="btn-primary"
-            >
-              <i class="fab fa-discord"></i>
-              Join Discord Community
-            </a>
-            <a href="#plans" class="btn-secondary">
-              <i class="fas fa-arrow-up"></i>
-              View Pricing Plans
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+      lastScrollTop = Math.max(0, scrollTop);
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <i class="fas fa-shield-alt"></i>
-              <span>TikTok Expert</span>
-            </div>
-            <p>
-              Professional TikTok recovery services trusted by 500+ creators, brands,
-              and agencies worldwide. Expert violation removal with 87% success rate.
-            </p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Services</h4>
-              <ul>
-                <li><a href="#services">Violation Removal</a></li>
-                <li><a href="#services">Ban Recovery</a></li>
-                <li><a href="#services">Shop Support</a></li>
-              </ul>
-            </div>
-            <div class="footer-column">
-              <h4>Support</h4>
-              <ul>
-                <li><a href="https://discord.gg/npFjpuJ36y">Discord</a></li>
-                <li><a href="#plans">Pricing</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>
-            &copy; 2025 TikTok Expert. All rights reserved. Built for
-            creators, brands, and agencies worldwide.
-          </p>
-        </div>
-      </div>
-    </footer>
+/* ═══════════════════════════════════════════════════════════════
+   Mobile Menu
+   ═══════════════════════════════════════════════════════════════ */
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+});
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-  </body>
-</html>
+// Close on link click
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   Active Nav Link
+   ═══════════════════════════════════════════════════════════════ */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function updateActiveNavLink() {
+  let current = '';
+  sections.forEach(section => {
+    if (window.pageYOffset >= section.offsetTop - 150) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+  });
+}
+
+window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+
+/* ═══════════════════════════════════════════════════════════════
+   Smooth Scroll
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: 'smooth',
+      });
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   Pricing Toggle
+   ═══════════════════════════════════════════════════════════════ */
+if (pricingToggle) {
+  pricingToggle.addEventListener('change', function () {
+    document.body.classList.toggle('yearly-active', this.checked);
+    // Animate numbers
+    document.querySelectorAll('.amount:not(.yearly):not(.monthly), .amount.monthly, .amount.yearly').forEach(el => {
+      el.style.transform = 'scale(0.85)';
+      el.style.opacity = '0.4';
+      setTimeout(() => {
+        el.style.transform = 'scale(1)';
+        el.style.opacity = '1';
+      }, 160);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Counter Animation
+   ═══════════════════════════════════════════════════════════════ */
+function animateCounter(el) {
+  const raw = el.getAttribute('data-target') || el.textContent.replace(/[^\d]/g, '');
+  const target = parseInt(raw, 10);
+  if (isNaN(target)) return;
+
+  const suffix = (el.textContent.match(/[%+h]/) || [''])[0];
+  const prefix = el.textContent.startsWith('$') ? '$' : '';
+  const duration = 2000;
+  const startTime = performance.now();
+
+  function update(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+
+    if (suffix) el.textContent = prefix + current + suffix;
+    else if (prefix) el.textContent = prefix + current.toLocaleString();
+    else el.textContent = current.toLocaleString();
+
+    if (progress < 1) requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.stat-number, .stats-number').forEach(el => counterObserver.observe(el));
+
+/* ═══════════════════════════════════════════════════════════════
+   Mouse-Track Glow on Service Cards
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   FAQ Accordion
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isActive = item.classList.contains('active');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+
+    // Open clicked (unless it was already open)
+    if (!isActive) item.classList.add('active');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   Back to Top
+   ═══════════════════════════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.pageYOffset > 600);
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   Parallax Hero
+   ═══════════════════════════════════════════════════════════════ */
+const heroBg    = document.querySelector('.hero-background');
+const heroContent = document.querySelector('.hero-content');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.pageYOffset;
+  if (heroBg)    heroBg.style.transform    = `translateY(${scrollY * -0.3}px)`;
+  if (heroContent && scrollY < window.innerHeight) {
+    heroContent.style.transform = `translateY(${scrollY * -0.1}px)`;
+  }
+}, { passive: true });
+
+/* ═══════════════════════════════════════════════════════════════
+   Loading State for CTA Buttons
+   ═══════════════════════════════════════════════════════════════ */
+function showLoading(button) {
+  const icon = button.querySelector('i');
+  const originalClass = icon ? icon.className : '';
+  if (icon) icon.className = 'fas fa-spinner fa-spin';
+  button.style.pointerEvents = 'none';
+  button.style.opacity = '0.7';
+
+  setTimeout(() => {
+    if (icon) icon.className = originalClass;
+    button.style.pointerEvents = '';
+    button.style.opacity = '';
+  }, 2000);
+}
+
+document.querySelectorAll('.btn-primary, .pricing-btn').forEach(btn => {
+  if (btn.href && btn.href.includes('discord')) {
+    btn.addEventListener('click', function () { showLoading(this); });
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   Service Worker (PWA)
+   ═══════════════════════════════════════════════════════════════ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    fetch('/sw.js')
+      .then(res => { if (res.ok) navigator.serviceWorker.register('/sw.js'); })
+      .catch(() => {});
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Theme Detection
+   ═══════════════════════════════════════════════════════════════ */
+const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+darkQuery.addEventListener('change', e => {
+  document.body.classList.toggle('dark-theme', e.matches);
+});
+document.body.classList.toggle('dark-theme', darkQuery.matches);
+
+/* ═══════════════════════════════════════════════════════════════
+   Analytics Stub
+   ═══════════════════════════════════════════════════════════════ */
+function trackEvent(name, props = {}) {
+  if (window.gtag)     window.gtag('event', name, props);
+  if (window.analytics) window.analytics.track(name, props);
+}
+
+document.querySelectorAll('.btn-primary, .pricing-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    trackEvent('cta_click', {
+      text: this.textContent.trim().slice(0, 30),
+      section: this.closest('section')?.id || 'unknown',
+    });
+  });
+});
+
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      trackEvent('section_view', { section: entry.target.id });
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(s => sectionObserver.observe(s));
+
+/* ═══════════════════════════════════════════════════════════════
+   Error Handling
+   ═══════════════════════════════════════════════════════════════ */
+window.addEventListener('error', e => console.error('JS Error:', e.error));
+window.addEventListener('unhandledrejection', e => {
+  console.error('Unhandled rejection:', e.reason);
+  e.preventDefault();
+});
